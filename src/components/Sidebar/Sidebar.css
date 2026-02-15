@@ -1,0 +1,115 @@
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: #C75D2C;
+    color: var(--white);
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo-box {
+    padding: 28px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-box h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.sidebar-logo {
+    padding: 0 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-close {
+    display: none;
+    font-size: 1.5rem;
+    color: white;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-close {
+        display: block;
+    }
+}
+
+.logo-box {
+    background-color: #666;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.sidebar-nav {
+    flex: 1;
+}
+
+.sidebar-nav ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.nav-item.active {
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+    font-weight: 600;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    margin-left: 20px;
+}
+
+.nav-icon {
+    margin-right: 15px;
+    font-size: 1.1rem;
+}
+
+.logout-item {
+    margin-top: auto;
+}
+
+.logout-btn {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    width: 100%;
+    text-align: left;
+}
