@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import './Settings.css';
 
@@ -89,6 +89,7 @@ const Settings = ({ toggleSidebar }) => {
                                 <option value="es">Spanish</option>
                                 <option value="fr">French</option>
                                 <option value="de">German</option>
+                                <option value="de">korean</option>
                             </select>
                         </div>
                         <div className="settings-item">

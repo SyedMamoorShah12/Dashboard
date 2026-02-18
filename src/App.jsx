@@ -42,8 +42,8 @@ function App() {
                       <Route path="/orders" element={<Orders toggleSidebar={toggleSidebar} />} />
                        <Route path="/categories" element={<Categories toggleSidebar={toggleSidebar} />} />
                       <Route path="/payments" element={<Payments toggleSidebar={toggleSidebar} />} />
-                      {/*<Route path="/profile" element={<Profile toggleSidebar={toggleSidebar} />} />
-                      <Route path="/settings" element={<Settings toggleSidebar={toggleSidebar} />} />  */}
+                      <Route path="/profile" element={<Profile toggleSidebar={toggleSidebar} />} />
+                      <Route path="/settings" element={<Settings toggleSidebar={toggleSidebar} />} /> 
                     </Routes>
                   </main>
                 </div>
