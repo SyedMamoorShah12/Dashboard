@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import { useData } from '../../contexts/DataContext';
+import { useCurrency } from '../../contexts/CurrencyContext';
 import './Products.css';
 
 const Products = ({ toggleSidebar }) => {
     const { products, deleteProduct, updateProduct } = useData();
+    const { formatCurrency } = useCurrency();
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [productToDelete, setProductToDelete] = useState(null);
@@ -90,7 +92,7 @@ const Products = ({ toggleSidebar }) => {
                                     <td>{product.id}</td>
                                     <td>{product.name}</td>
                                     <td>{product.category}</td>
-                                    <td>{product.price.toFixed(2)}</td>
+                                    <td>{formatCurrency(product.price)}</td>
                                     <td>{product.stock}</td>
                                     <td>
                                         <span className={`status ${product.status === 'In Stock' ? 'in-stock' : 'out-of-stock'}`}>

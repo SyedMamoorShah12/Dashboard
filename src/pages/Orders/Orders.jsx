@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import { useData } from '../../contexts/DataContext';
+import { useCurrency } from '../../contexts/CurrencyContext';
 import './Orders.css';
 
 const Orders = ({ toggleSidebar }) => {
     const { orders, updateOrder } = useData();
+    const { formatCurrency } = useCurrency();
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [showDetails, setShowDetails] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -48,7 +50,7 @@ const Orders = ({ toggleSidebar }) => {
                                         <td>{order.id}</td>
                                         <td>{order.customer}</td>
                                         <td>{order.date}</td>
-                                        <td>{order.total.toFixed(2)}</td>
+                                        <td>{formatCurrency(order.total)}</td>
                                         <td>
                                             <select
                                                 className={`status-select ${order.status.toLowerCase()}`}
@@ -112,8 +114,8 @@ const Orders = ({ toggleSidebar }) => {
                                         <tr key={index}>
                                             <td>{item.product}</td>
                                             <td>{item.quantity}</td>
-                                            <td>{item.price.toFixed(2)}</td>
-                                            <td>{(item.quantity * item.price).toFixed(2)}</td>
+                                            <td>{formatCurrency(item.price)}</td>
+                                            <td>{formatCurrency(item.quantity * item.price)}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -122,11 +124,11 @@ const Orders = ({ toggleSidebar }) => {
                             <div className="order-summary">
                                 <div className="summary-row">
                                     <span>Subtotal:</span>
-                                    <span>${selectedOrder.total.toFixed(2)}</span>
+                                    <span>{formatCurrency(selectedOrder.total)}</span>
                                 </div>
                                 <div className="summary-row total">
                                     <span>Total:</span>
-                                    <span>${selectedOrder.total.toFixed(2)}</span>
+                                    <span>{formatCurrency(selectedOrder.total)}</span>
                                 </div>
                             </div>
                         </div>

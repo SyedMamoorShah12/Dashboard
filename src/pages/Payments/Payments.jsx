@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import { useData } from '../../contexts/DataContext';
+import { useCurrency } from '../../contexts/CurrencyContext';
 import './Payments.css';
 
 const Payments = ({ toggleSidebar }) => {
     const { payments } = useData();
+    const { formatCurrency } = useCurrency();
 
     return (
         <div className="page-wrapper">
@@ -30,7 +32,7 @@ const Payments = ({ toggleSidebar }) => {
                                     <td>{payment.id}</td>
                                     <td>{payment.customer}</td>
                                     <td>{payment.orderId}</td>
-                                    <td>${payment.amount.toFixed(2)}</td>
+                                    <td>{formatCurrency(payment.amount)}</td>
                                     <td>{payment.method}</td>
                                     <td>
                                         <span className={`status ${payment.status.toLowerCase()}`}>

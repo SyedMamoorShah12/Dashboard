@@ -1,14 +1,16 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
+import { useCurrency } from '../../contexts/CurrencyContext';
 import './Settings.css';
 
 const Settings = ({ toggleSidebar }) => {
+    const { currency, updateCurrency, availableCurrencies } = useCurrency();
+
     const [settings, setSettings] = useState({
         emailNotifications: true,
         orderUpdates: true,
         newsletter: false,
         language: 'en',
-        currency: 'USD',
         timezone: 'UTC',
     });
 
@@ -18,6 +20,10 @@ const Settings = ({ toggleSidebar }) => {
 
     const handleSelectChange = (key, value) => {
         setSettings(prev => ({ ...prev, [key]: value }));
+    };
+
+    const handleCurrencyChange = (e) => {
+        updateCurrency(e.target.value);
     };
 
     return (
@@ -89,7 +95,7 @@ const Settings = ({ toggleSidebar }) => {
                                 <option value="es">Spanish</option>
                                 <option value="fr">French</option>
                                 <option value="de">German</option>
-                                <option value="de">korean</option>
+                                <option value="ko">Korean</option>
                             </select>
                         </div>
                         <div className="settings-item">
@@ -98,14 +104,13 @@ const Settings = ({ toggleSidebar }) => {
                                 <span className="setting-description">Select display currency</span>
                             </div>
                             <select
-                                value={settings.currency}
-                                onChange={(e) => handleSelectChange('currency', e.target.value)}
+                                value={currency}
+                                onChange={handleCurrencyChange}
                                 className="settings-select"
                             >
-                                <option value="USD">USD ($)</option>
-                                <option value="EUR">EUR (€)</option>
-                                <option value="GBP">GBP (£)</option>
-                                <option value="JPY">JPY (¥)</option>
+                                {availableCurrencies.map(curr => (
+                                    <option key={curr} value={curr}>{curr}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="settings-item">
@@ -129,8 +134,10 @@ const Settings = ({ toggleSidebar }) => {
                     {/* Security Settings */}
                     <div className="settings-card">
                         <h3>Security</h3>
-                        <button className="action-btn">Change Password</button>
-                        <button className="action-btn danger">Clear Cache</button>
+                        <div className="security-actions">
+                            <button className="action-btn">Change Password</button>
+                            <button className="action-btn danger">Clear Cache</button>
+                        </div>
                     </div>
                 </div>
             </div>

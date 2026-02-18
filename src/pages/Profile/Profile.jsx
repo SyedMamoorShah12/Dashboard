@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from '../../components/Header/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import profileAvatar from '../../assets/avatar.png';
@@ -6,11 +6,13 @@ import './Profile.css';
 
 const Profile = ({ toggleSidebar }) => {
     const { user, updateProfile } = useAuth();
+    const fileInputRef = useRef(null);
+
     const [formData, setFormData] = useState({
         name: user?.name || 'John Doe',
         email: user?.email || 'admin@dashboard.com',
-        phone: '+1 234 567 890',
-        bio: 'Dashboard Administrator with 5+ years of experience in e-commerce management.'
+        phone: user?.phone || '+1 234 567 890',
+        bio: user?.bio || 'Dashboard Administrator with 5+ years of experience in e-commerce management.'
     });
     const [isEditing, setIsEditing] = useState(false);
 
@@ -18,9 +20,22 @@ const Profile = ({ toggleSidebar }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            updateProfile({ avatar: imageUrl });
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateProfile({ name: formData.name });
+        updateProfile({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            bio: formData.bio
+        });
         setIsEditing(false);
         alert('Profile updated successfully!');
     };
@@ -32,11 +47,23 @@ const Profile = ({ toggleSidebar }) => {
                 <div className="profile-layout">
                     <div className="profile-sidebar-card card">
                         <div className="profile-image-container">
-                            <img src={profileAvatar} alt="Profile" />
-                            <button className="change-photo-btn">Change Photo</button>
+                            <img src={user?.avatar || profileAvatar} alt="Profile" className="profile-pic" />
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                style={{ display: 'none' }}
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
+                            <button
+                                className="change-photo-btn"
+                                onClick={() => fileInputRef.current.click()}
+                            >
+                                Change Photo
+                            </button>
                         </div>
-                        <h3>{formData.name}</h3>
-                        <p className="role">Administrator</p>
+                        <h3>{user?.name || formData.name}</h3>
+                        <p className="role">{user?.role || 'Administrator'}</p>
                         <div className="profile-stats">
                             <div className="stat-item">
                                 <span className="stat-number">48</span>
@@ -94,7 +121,7 @@ const Profile = ({ toggleSidebar }) => {
                                     <label>Role</label>
                                     <input
                                         type="text"
-                                        value="Administrator"
+                                        value={user?.role || 'Administrator'}
                                         disabled
                                     />
                                 </div>
@@ -103,10 +130,12 @@ const Profile = ({ toggleSidebar }) => {
                                 <label>Bio</label>
                                 <textarea
                                     name="bio"
-                                    rows="4"
+                                    className="bio-textarea"
+                                    rows="6"
                                     value={formData.bio}
                                     onChange={handleChange}
                                     disabled={!isEditing}
+                                    placeholder="Tell us about yourself..."
                                 />
                             </div>
                             {isEditing && (
