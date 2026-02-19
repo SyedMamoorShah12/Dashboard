@@ -105,7 +105,7 @@ const Products = ({ toggleSidebar }) => {
                                                 Edit
                                             </button>
                                             <button className="delete-btn" onClick={() => handleDelete(product)}>
-                                                🗑️ Delete
+                                                Delete
                                             </button>
                                         </div>
                                     </td>
