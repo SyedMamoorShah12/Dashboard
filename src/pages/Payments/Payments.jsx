@@ -14,36 +14,39 @@ const Payments = ({ toggleSidebar }) => {
             <div className="page-container">
                 <div className="card">
                     <h3>Payment History ({payments.length})</h3>
-                    <table className="data-table">
-                        <thead>
-                            <tr>
-                                <th>Transaction ID</th>
-                                <th>Customer</th>
-                                <th>Order ID</th>
-                                <th>Amount</th>
-                                <th>Method</th>
-                                <th>Status</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {payments.map((payment) => (
-                                <tr key={payment.id}>
-                                    <td>{payment.id}</td>
-                                    <td>{payment.customer}</td>
-                                    <td>{payment.orderId}</td>
-                                    <td>{formatCurrency(payment.amount)}</td>
-                                    <td>{payment.method}</td>
-                                    <td>
-                                        <span className={`status ${payment.status.toLowerCase()}`}>
-                                            {payment.status}
-                                        </span>
-                                    </td>
-                                    <td>{payment.date}</td>
+                    <div className="table-responsive">
+                        <table className="data-table">
+                            <thead>
+                                <tr>
+                                    <th className="hide-on-mobile">Transaction ID</th>
+                                    <th>Customer</th>
+                                    <th className="hide-on-mobile">Order ID</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                    <th className="hide-on-mobile">Date</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {payments.map((payment) => (
+                                    <tr key={payment.id}>
+                                        <td className="hide-on-mobile">{payment.id}</td>
+                                        <td>{payment.customer}</td>
+                                        <td className="hide-on-mobile">{payment.orderId}</td>
+                                        <td>{formatCurrency(payment.amount)}</td>
+                                        <td>{payment.method}</td>
+                                        <td>
+                                            <span className={`status ${payment.status.toLowerCase()}`}>
+                                                {payment.status}
+                                            </span>
+                                        </td>
+                                        <td className="hide-on-mobile">{payment.date}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>

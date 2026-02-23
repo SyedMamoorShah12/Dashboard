@@ -55,6 +55,8 @@
 @media (max-width: 1024px) {
     .sidebar {
         transform: translateX(-100%);
+        z-index: 1001;
+        /* Ensure it stays above everything on mobile */
     }
 
     .sidebar.open {
@@ -65,6 +67,7 @@
         display: block;
     }
 }
+
 
 .sidebar-nav {
     flex: 1;

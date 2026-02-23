@@ -103,6 +103,10 @@ input {
     width: 100%;
   }
 
+  .main-content.sidebar-open {
+    margin-left: 0;
+  }
+
   .page-container {
     padding: 15px;
   }
@@ -113,9 +117,52 @@ input {
     pointer-events: none;
   }
 
-  /* Only show overlay when sidebar is active/open - Logic usually handled in JS but basic display here */
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
   body.sidebar-open .sidebar-overlay {
     opacity: 1;
     pointer-events: all;
   }
+}
+
+/* Base Responsive Utilities */
+.hide-on-mobile {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.show-on-mobile {
+  display: none !important;
+
+  @media (max-width: 768px) {
+    display: block !important;
+  }
+}
+
+.stack-on-mobile {
+  @media (max-width: 768px) {
+    flex-direction: column !important;
+  }
+}
+
+.text-center-mobile {
+  @media (max-width: 768px) {
+    text-align: center !important;
+  }
+}
+
+.w-full-mobile {
+  @media (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+/* Responsive Table Wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }

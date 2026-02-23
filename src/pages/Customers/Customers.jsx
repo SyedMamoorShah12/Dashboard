@@ -54,44 +54,47 @@ const Customers = ({ toggleSidebar }) => {
                             + Add Customer
                         </button>
                     </div>
-                    <table className="data-table">
-                        <thead>
-                            <tr>
-                                <th>Customer ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Orders</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredCustomers.map((customer) => (
-                                <tr key={customer.id}>
-                                    <td>{customer.id}</td>
-                                    <td>{customer.name}</td>
-                                    <td>{customer.email}</td>
-                                    <td>{customer.phone}</td>
-                                    <td>{customer.orders || 0}</td>
-                                    <td>
-                                        <span className={`status ${customer.status.toLowerCase()}`}>
-                                            {customer.status}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <button
-                                            className={`status-toggle ${customer.status.toLowerCase()}`}
-                                            onClick={() => toggleStatus(customer)}
-                                            title={`Set to ${customer.status === 'Active' ? 'Inactive' : 'Active'}`}
-                                        >
-                                            {customer.status === 'Active' ? '✓ Active' : '✕ Inactive'}
-                                        </button>
-                                    </td>
+                    <div className="table-responsive">
+                        <table className="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Name</th>
+                                    <th className="hide-on-mobile">Email</th>
+                                    <th className="hide-on-mobile">Phone</th>
+                                    <th className="hide-on-mobile">Orders</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {filteredCustomers.map((customer) => (
+                                    <tr key={customer.id}>
+                                        <td>{customer.id}</td>
+                                        <td>{customer.name}</td>
+                                        <td className="hide-on-mobile">{customer.email}</td>
+                                        <td className="hide-on-mobile">{customer.phone}</td>
+                                        <td className="hide-on-mobile">{customer.orders || 0}</td>
+                                        <td>
+                                            <span className={`status ${customer.status.toLowerCase()}`}>
+                                                {customer.status}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button
+                                                className={`status-toggle ${customer.status.toLowerCase()}`}
+                                                onClick={() => toggleStatus(customer)}
+                                                title={`Set to ${customer.status === 'Active' ? 'Inactive' : 'Active'}`}
+                                            >
+                                                {customer.status === 'Active' ? '✓ Active' : '✕ Inactive'}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 

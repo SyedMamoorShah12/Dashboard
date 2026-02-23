@@ -33,44 +33,47 @@ const Orders = ({ toggleSidebar }) => {
                 <div className="orders-section">
                     <div className="card">
                         <h3>Recent Orders ({filteredOrders.length})</h3>
-                        <table className="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Date</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredOrders.map((order) => (
-                                    <tr key={order.id}>
-                                        <td>{order.id}</td>
-                                        <td>{order.customer}</td>
-                                        <td>{order.date}</td>
-                                        <td>{formatCurrency(order.total)}</td>
-                                        <td>
-                                            <select
-                                                className={`status-select ${order.status.toLowerCase()}`}
-                                                value={order.status}
-                                                onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                                            >
-                                                <option value="Pending">Pending</option>
-                                                <option value="Processing">Processing</option>
-                                                <option value="Delivered">Delivered</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <button className="view-btn" onClick={() => setSelectedOrder(order)}>
-                                                View Details
-                                            </button>
-                                        </td>
+                        <div className="table-responsive">
+                            <table className="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th className="hide-on-mobile">Customer</th>
+                                        <th className="hide-on-mobile">Date</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {filteredOrders.map((order) => (
+                                        <tr key={order.id}>
+                                            <td>{order.id}</td>
+                                            <td className="hide-on-mobile">{order.customer}</td>
+                                            <td className="hide-on-mobile">{order.date}</td>
+                                            <td>{formatCurrency(order.total)}</td>
+                                            <td>
+                                                <select
+                                                    className={`status-select ${order.status.toLowerCase()}`}
+                                                    value={order.status}
+                                                    onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                                                >
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="Processing">Processing</option>
+                                                    <option value="Delivered">Delivered</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button className="view-btn" onClick={() => setSelectedOrder(order)}>
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                     {selectedOrder && (

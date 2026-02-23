@@ -58,47 +58,50 @@ const Categories = ({ toggleSidebar }) => {
                         <h3>Category List ({categories.length})</h3>
                         <button className="add-btn" onClick={() => setShowAddModal(true)}>+ Add Category</button>
                     </div>
-                    <table className="data-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Slug</th>
-                                <th>Products</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {categories.map((category) => (
-                                <tr key={category.id}>
-                                    <td>{category.id}</td>
-                                    <td>{category.name}</td>
-                                    <td>{category.slug}</td>
-                                    <td>{category.count}</td>
-                                    <td>
-                                        <span className={`status ${category.status.toLowerCase()}`}>
-                                            {category.status}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div className="actions">
-                                            <button
-                                                className={`status-toggle ${category.status.toLowerCase()}`}
-                                                onClick={() => toggleStatus(category)}
-                                                title={`Set to ${category.status === 'Active' ? 'Inactive' : 'Active'}`}
-                                            >
-                                                {category.status === 'Active' ? '✓' : '✕'}
-                                            </button>
-                                            <button className="delete-btn" onClick={() => handleDelete(category)}>
-                                                🗑️ Delete
-                                            </button>
-                                        </div>
-                                    </td>
+                    <div className="table-responsive">
+                        <table className="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th className="hide-on-mobile">Slug</th>
+                                    <th className="hide-on-mobile">Products</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {categories.map((category) => (
+                                    <tr key={category.id}>
+                                        <td>{category.id}</td>
+                                        <td>{category.name}</td>
+                                        <td className="hide-on-mobile">{category.slug}</td>
+                                        <td className="hide-on-mobile">{category.count}</td>
+                                        <td>
+                                            <span className={`status ${category.status.toLowerCase()}`}>
+                                                {category.status}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div className="actions">
+                                                <button
+                                                    className={`status-toggle ${category.status.toLowerCase()}`}
+                                                    onClick={() => toggleStatus(category)}
+                                                    title={`Set to ${category.status === 'Active' ? 'Inactive' : 'Active'}`}
+                                                >
+                                                    {category.status === 'Active' ? '✓' : '✕'}
+                                                </button>
+                                                <button className="delete-btn" onClick={() => handleDelete(category)}>
+                                                    🗑️ Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 

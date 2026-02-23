@@ -34,7 +34,7 @@
 }
 
 .menu-toggle:hover {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .header-right {
@@ -62,7 +62,7 @@
 .search-bar:focus-within {
     background-color: #fff;
     border-color: #ddd;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .search-icon-input {
@@ -104,7 +104,8 @@
     gap: 15px;
 }
 
-.icon-item, .icon-badge {
+.icon-item,
+.icon-badge {
     cursor: pointer;
     width: 40px;
     height: 40px;
@@ -117,12 +118,14 @@
     position: relative;
 }
 
-.icon-item:hover, .icon-badge:hover {
+.icon-item:hover,
+.icon-badge:hover {
     background-color: #f5f5f5;
     color: var(--primary-color);
 }
 
-.icon-item:active, .icon-badge:active {
+.icon-item:active,
+.icon-badge:active {
     transform: scale(0.95);
 }
 
@@ -141,7 +144,7 @@
     font-size: 0.65rem;
     font-weight: 700;
     border: 2px solid var(--white);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Notifications Dropdown */
@@ -164,6 +167,7 @@
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -231,7 +235,8 @@
 }
 
 .notification-item.unread {
-    background-color: #fffaf0; /* Light orange tint */
+    background-color: #fffaf0;
+    /* Light orange tint */
 }
 
 .notif-content {
@@ -309,39 +314,39 @@
         padding: 0 15px;
         height: 60px;
     }
-    
+
     .menu-toggle {
         display: block;
         margin-right: 5px;
     }
 
     .header-left h2 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .search-bar-container {
-        display: none; /* Hidden by default on mobile */
+        display: none;
     }
 
     .search-bar-container.active {
-        display: block;
-        position: absolute;
+        display: flex;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 60px;
         background-color: white;
-        z-index: 950;
-        padding: 10px;
-        display: flex;
+        z-index: 1100;
+        padding: 0 15px;
         align-items: center;
-        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .search-bar-container.active .search-bar {
         width: 100%;
         border-radius: 8px;
-        padding: 10px 15px;
+        padding: 8px 15px;
+        background-color: #f0f2f5;
     }
 
     .mobile-search-trigger {
@@ -355,22 +360,28 @@
         color: #666;
         margin-left: 10px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .header-right {
-        gap: 10px;
+        gap: 8px;
     }
 
-    .icon-item, .icon-badge {
-        width: 36px;
-        height: 36px;
+    .icon-item,
+    .icon-badge {
+        width: 34px;
+        height: 34px;
     }
 
     .notifications-dropdown {
         position: fixed;
-        top: 60px;
+        top: 65px;
         left: 10px;
         right: 10px;
         width: auto;
+        max-width: none;
+        z-index: 1050;
     }
 }

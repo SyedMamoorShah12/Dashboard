@@ -23,6 +23,15 @@ function App() {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
 
+  React.useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.classList.add('sidebar-open');
+    } else {
+      document.body.classList.remove('sidebar-open');
+    }
+  }, [isSidebarOpen]);
+
+
   return (
     <AuthProvider>
       <CurrencyProvider>
@@ -60,3 +69,11 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+

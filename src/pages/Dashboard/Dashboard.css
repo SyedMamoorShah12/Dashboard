@@ -195,38 +195,55 @@
 
 /* Responsive Breakpoints */
 
+/* Responsive Breakpoints */
+
 /* Tablet & Smaller Laptops */
 @media (max-width: 1024px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 
     .charts-row {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 
     .pie-charts-container {
-        justify-content: center;
-        gap: 40px;
+        justify-content: space-evenly;
+        gap: 20px;
     }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
     .page-container {
-        padding: 16px;
+        padding: 15px;
     }
 
     .stats-grid {
-        gap: 16px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
     .stat-card {
-        padding: 20px;
+        padding: 16px;
+    }
+
+    .stat-title {
+        font-size: 0.75rem;
     }
 
     .stat-value {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .area-chart-container {
+        height: 250px;
+    }
+
+    .pie-charts-container {
+        gap: 15px;
     }
 
     .pie-chart {
@@ -247,11 +264,14 @@
 
     .pie-charts-container {
         flex-direction: column;
-        gap: 30px;
+        gap: 25px;
     }
 
     .chart-x-axis {
         display: none;
-        /* Too crowded on small screens */
+    }
+
+    .chart-card {
+        padding: 16px;
     }
 }

@@ -74,46 +74,49 @@ const Products = ({ toggleSidebar }) => {
                     <div className="section-header">
                         <h3>Product List ({filteredProducts.length})</h3>
                     </div>
-                    <table className="data-table">
-                        <thead>
-                            <tr>
-                                <th>Product ID</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Stock</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredProducts.map((product) => (
-                                <tr key={product.id}>
-                                    <td>{product.id}</td>
-                                    <td>{product.name}</td>
-                                    <td>{product.category}</td>
-                                    <td>{formatCurrency(product.price)}</td>
-                                    <td>{product.stock}</td>
-                                    <td>
-                                        <span className={`status ${product.status === 'In Stock' ? 'in-stock' : 'out-of-stock'}`}>
-                                            {product.status}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div className="actions">
-                                            <button className="edit-btn" onClick={() => handleEdit(product)}>
-                                                Edit
-                                            </button>
-                                            <button className="delete-btn" onClick={() => handleDelete(product)}>
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
+                    <div className="table-responsive">
+                        <table className="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Name</th>
+                                    <th className="hide-on-mobile">Category</th>
+                                    <th>Price</th>
+                                    <th className="hide-on-mobile">Stock</th>
+                                    <th className="hide-on-mobile">Status</th>
+                                    <th>Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {filteredProducts.map((product) => (
+                                    <tr key={product.id}>
+                                        <td>{product.id}</td>
+                                        <td>{product.name}</td>
+                                        <td className="hide-on-mobile">{product.category}</td>
+                                        <td>{formatCurrency(product.price)}</td>
+                                        <td className="hide-on-mobile">{product.stock}</td>
+                                        <td className="hide-on-mobile">
+                                            <span className={`status ${product.status === 'In Stock' ? 'in-stock' : 'out-of-stock'}`}>
+                                                {product.status}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div className="actions">
+                                                <button className="edit-btn" onClick={() => handleEdit(product)}>
+                                                    Edit
+                                                </button>
+                                                <button className="delete-btn" onClick={() => handleDelete(product)}>
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
 
             {/* Edit Product Modal */}
