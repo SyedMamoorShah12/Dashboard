@@ -149,4 +149,7 @@
         text-align: center;
         padding: 14px;
     }
+    .form-grid{
+        display: inline;
+    }
 }
