@@ -16,6 +16,14 @@ const AddProduct = ({ toggleSidebar }) => {
         description: ''
     });
 
+    const [previews, setPreviews] = useState({
+        image: null,
+        hoverImg: null,
+        image2: null,
+        image3: null,
+        image4: null
+    });
+
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
@@ -27,6 +35,20 @@ const AddProduct = ({ toggleSidebar }) => {
         // Clear error when user starts typing
         if (errors[name]) {
             setErrors(prev => ({ ...prev, [name]: '' }));
+        }
+    };
+
+    const handleImageChange = (e, fieldName) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviews(prev => ({
+                    ...prev,
+                    [fieldName]: reader.result
+                }));
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -51,7 +73,12 @@ const AddProduct = ({ toggleSidebar }) => {
         const productData = {
             ...formData,
             price: parseFloat(formData.price),
-            stock: parseInt(formData.stock)
+            stock: parseInt(formData.stock),
+            image: previews.image,
+            hoverImg: previews.hoverImg,
+            image2: previews.image2,
+            image3: previews.image3,
+            image4: previews.image4
         };
 
         addProduct(productData);
@@ -121,6 +148,81 @@ const AddProduct = ({ toggleSidebar }) => {
                                     min="0"
                                 />
                                 {errors.stock && <span className="error-text">{errors.stock}</span>}
+                            </div>
+
+                            <div className="form-group">
+                                <label>Main Image</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageChange(e, 'image')}
+                                    className="file-input"
+                                />
+                                {previews.image && (
+                                    <div style={{ marginTop: '10px' }}>
+                                        <img src={previews.image} alt="preview" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }} />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="form-group">
+                                <label>Hover / Flip Image</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageChange(e, 'hoverImg')}
+                                    className="file-input"
+                                />
+                                {previews.hoverImg && (
+                                    <div style={{ marginTop: '10px' }}>
+                                        <img src={previews.hoverImg} alt="preview" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }} />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="form-group">
+                                <label>Additional Image 1</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageChange(e, 'image2')}
+                                    className="file-input"
+                                />
+                                {previews.image2 && (
+                                    <div style={{ marginTop: '10px' }}>
+                                        <img src={previews.image2} alt="preview" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }} />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="form-group">
+                                <label>Additional Image 2</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageChange(e, 'image3')}
+                                    className="file-input"
+                                />
+                                {previews.image3 && (
+                                    <div style={{ marginTop: '10px' }}>
+                                        <img src={previews.image3} alt="preview" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }} />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="form-group">
+                                <label>Additional Image 3</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageChange(e, 'image4')}
+                                    className="file-input"
+                                />
+                                {previews.image4 && (
+                                    <div style={{ marginTop: '10px' }}>
+                                        <img src={previews.image4} alt="preview" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }} />
+                                    </div>
+                                )}
                             </div>
 
                             <div className="form-group full-width">
